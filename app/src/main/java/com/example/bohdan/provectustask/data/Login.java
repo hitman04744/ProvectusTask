@@ -1,18 +1,36 @@
 
 package com.example.bohdan.provectustask.data;
 
-public class Login {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Login implements Parcelable {
+    public static final Creator<Login> CREATOR = new Creator<Login>() {
+        @Override
+        public Login createFromParcel(Parcel in) {
+            return new Login(in);
+        }
+
+        @Override
+        public Login[] newArray(int size) {
+            return new Login[size];
+        }
+    };
     private String username;
-
     private String sha256;
-
     private String md5;
-
     private String sha1;
-
     private String password;
-
     private String salt;
+
+    protected Login(Parcel in) {
+        username = in.readString();
+        sha256 = in.readString();
+        md5 = in.readString();
+        sha1 = in.readString();
+        password = in.readString();
+        salt = in.readString();
+    }
 
     public String getUsername() {
         return username;
@@ -65,5 +83,20 @@ public class Login {
     @Override
     public String toString() {
         return "ClassPojo [username = " + username + ", sha256 = " + sha256 + ", md5 = " + md5 + ", sha1 = " + sha1 + ", password = " + password + ", salt = " + salt + "]";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(username);
+        dest.writeString(sha256);
+        dest.writeString(md5);
+        dest.writeString(sha1);
+        dest.writeString(password);
+        dest.writeString(salt);
     }
 }

@@ -1,14 +1,32 @@
 
 package com.example.bohdan.provectustask.data;
 
-public class Info {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Info implements Parcelable {
+    public static final Creator<Info> CREATOR = new Creator<Info>() {
+        @Override
+        public Info createFromParcel(Parcel in) {
+            return new Info(in);
+        }
+
+        @Override
+        public Info[] newArray(int size) {
+            return new Info[size];
+        }
+    };
     private String results;
-
     private String page;
-
     private String seed;
-
     private String version;
+
+    protected Info(Parcel in) {
+        results = in.readString();
+        page = in.readString();
+        seed = in.readString();
+        version = in.readString();
+    }
 
     public String getResults() {
         return results;
@@ -45,5 +63,18 @@ public class Info {
     @Override
     public String toString() {
         return "ClassPojo [results = " + results + ", page = " + page + ", seed = " + seed + ", version = " + version + "]";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(results);
+        dest.writeString(page);
+        dest.writeString(seed);
+        dest.writeString(version);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.bohdan.provectustask;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.bohdan.provectustask.adapters.RandomUserAdapter;
+import com.example.bohdan.provectustask.application.App;
 import com.example.bohdan.provectustask.data.Result;
 import com.example.bohdan.provectustask.data.Results;
 
@@ -33,7 +36,9 @@ public class MainActivity extends AppCompatActivity implements RandomUserAdapter
         recyclerView = (RecyclerView) findViewById(R.id.main_RV);
         pBar = (ProgressBar) findViewById(R.id.progressBar);
         pBar.setVisibility(View.VISIBLE);
-        res = getUsers();
+        if (res == null) {
+            res = getUsers();
+        }
         mAdapter = new RandomUserAdapter(res, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mLayoutManager.setAutoMeasureEnabled(false);
@@ -80,5 +85,10 @@ public class MainActivity extends AppCompatActivity implements RandomUserAdapter
     @Override
     public void ItemClicked(View v, int position) {
         Toast.makeText(this, position + "", Toast.LENGTH_SHORT).show();
+//        Bundle bd= new Bundle();
+//        bd.putParcelable("user",res.get(position));
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("user", res.get(position));
+        startActivity(intent);
     }
 }

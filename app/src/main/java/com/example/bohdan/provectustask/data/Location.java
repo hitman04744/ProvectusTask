@@ -1,14 +1,32 @@
 
 package com.example.bohdan.provectustask.data;
 
-public class Location {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Location implements Parcelable {
+    public static final Creator<Location> CREATOR = new Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
     private String street;
-
     private String state;
-
     private String postcode;
-
     private String city;
+
+    protected Location(Parcel in) {
+        street = in.readString();
+        state = in.readString();
+        postcode = in.readString();
+        city = in.readString();
+    }
 
     public String getStreet() {
         return street;
@@ -45,6 +63,19 @@ public class Location {
     @Override
     public String toString() {
         return "ClassPojo [street = " + street + ", state = " + state + ", postcode = " + postcode + ", city = " + city + "]";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(street);
+        dest.writeString(state);
+        dest.writeString(postcode);
+        dest.writeString(city);
     }
 }
 

@@ -1,7 +1,8 @@
-package com.example.bohdan.provectustask;
+package com.example.bohdan.provectustask.application;
 
 import android.app.Application;
 
+import com.example.bohdan.provectustask.network.RandomuserApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

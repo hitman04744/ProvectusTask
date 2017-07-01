@@ -1,4 +1,4 @@
-package com.example.bohdan.provectustask;
+package com.example.bohdan.provectustask.network;
 
 import com.example.bohdan.provectustask.data.Result;
 

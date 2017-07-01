@@ -1,4 +1,4 @@
-package com.example.bohdan.provectustask;
+package com.example.bohdan.provectustask.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.bohdan.provectustask.R;
 import com.example.bohdan.provectustask.data.Results;
 import com.squareup.picasso.Picasso;
 
